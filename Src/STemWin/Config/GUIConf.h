@@ -74,9 +74,9 @@ Purpose     : Configures emWins abilities, fonts etc.
 *
 *       Configuration of touch support
 */
-#ifndef   GUI_SUPPORT_TOUCH
-#define GUI_SUPPORT_TOUCH       (0)  // Support touchscreen
-#endif
+//#ifndef   GUI_SUPPORT_TOUCH
+#define GUI_SUPPORT_TOUCH       (1)  // Support touchscreen
+//#endif
 
 /*********************************************************************
 *

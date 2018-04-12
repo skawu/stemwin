@@ -3,11 +3,11 @@
 
 void GUI_TOUCH_X_ActivateX(void)
 {
-	;
+	TOUCH_Scan();
 }
 void GUI_TOUCH_X_ActivateY(void)
 {
-	;
+	TOUCH_Scan();
 }
 int GUI_TOUCH_X_MeasureX(void)
 {

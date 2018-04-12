@@ -41,14 +41,14 @@
 #include "lcd_driver.h"
 #include "GUI.h"
 #include "GUIDEMO.h"
+#include <stdio.h>
 
 /* USER CODE BEGIN Includes */
 
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
-//SPI_HandleTypeDef hspi1;
-//SPI_HandleTypeDef hspi2;
+
 
 UART_HandleTypeDef huart2;
 UART_HandleTypeDef huart3;
@@ -66,8 +66,6 @@ static void MX_GPIO_Init(void);
 void MX_FSMC_Init(void);
 static void MX_USART3_UART_Init(void);
 static void MX_USART2_UART_Init(void);
-static void MX_SPI1_Init(void);
-static void MX_SPI2_Init(void);
 WM_HWIN CreateFramewin(void);
 
 /* USER CODE BEGIN PFP */
@@ -87,33 +85,29 @@ WM_HWIN CreateFramewin(void);
 int main(void)
 {
 	/* USER CODE BEGIN 1 */
-//	int i = 0;
-//	int a= 0, b =0 , c =0, d =0;
-//	int xPos, yPos;
+
 	/* USER CODE END 1 */
 	/* MCU Configuration----------------------------------------------------------*/
 	/* Reset of all peripherals, Initializes the Flash interface and the Systick. */
 	HAL_Init();
+	
 	/* USER CODE BEGIN Init */
 	/* USER CODE END Init */
 	/* Configure the system clock */
+	
 	SystemClock_Config();
+	
 	/* USER CODE BEGIN SysInit */
 	/* USER CODE END SysInit */
 	/* Initialize all configured peripherals */
+	
 	MX_GPIO_Init();
-//  MX_FSMC_Init();
 	MX_USART3_UART_Init();
 	MX_USART2_UART_Init();
-	MX_SPI1_Init();
-	MX_SPI2_Init();
+	
 	/* USER CODE BEGIN 2 */
 	__HAL_RCC_CRC_CLK_ENABLE();
 	MainTask();
-//	GUI_Init();
-//	WM_HWIN CreateFramewin();
-
-//	GUIDEMO_Main();
 
 	/* USER CODE END 2 */
 
@@ -137,8 +131,9 @@ void SystemClock_Config(void)
 {
 	RCC_OscInitTypeDef RCC_OscInitStruct;
 	RCC_ClkInitTypeDef RCC_ClkInitStruct;
-	/**Initializes the CPU, AHB and APB busses clocks
-	*/
+	/**
+	  * Initializes the CPU, AHB and APB busses clocks
+	  */
 	RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
 	RCC_OscInitStruct.HSEState = RCC_HSE_ON;
 	RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV1;
@@ -176,49 +171,7 @@ void SystemClock_Config(void)
 	HAL_NVIC_SetPriority(SysTick_IRQn, 0, 0);
 }
 
-/* SPI1 init function */
-static void MX_SPI1_Init(void)
-{
-	/* SPI1 parameter configuration*/
-//  hspi1.Instance = SPI1;
-//  hspi1.Init.Mode = SPI_MODE_MASTER;
-//  hspi1.Init.Direction = SPI_DIRECTION_2LINES;
-//  hspi1.Init.DataSize = SPI_DATASIZE_8BIT;
-//  hspi1.Init.CLKPolarity = SPI_POLARITY_LOW;
-//  hspi1.Init.CLKPhase = SPI_PHASE_1EDGE;
-//  hspi1.Init.NSS = SPI_NSS_SOFT;
-//  hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_256;
-//  hspi1.Init.FirstBit = SPI_FIRSTBIT_MSB;
-//  hspi1.Init.TIMode = SPI_TIMODE_DISABLE;
-//  hspi1.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
-//  hspi1.Init.CRCPolynomial = 10;
-//  if (HAL_SPI_Init(&hspi1) != HAL_OK)
-//  {
-//    _Error_Handler(__FILE__, __LINE__);
-//  }
-}
 
-/* SPI2 init function */
-static void MX_SPI2_Init(void)
-{
-	/* SPI2 parameter configuration*/
-//  hspi2.Instance = SPI2;
-//  hspi2.Init.Mode = SPI_MODE_MASTER;
-//  hspi2.Init.Direction = SPI_DIRECTION_2LINES;
-//  hspi2.Init.DataSize = SPI_DATASIZE_8BIT;
-//  hspi2.Init.CLKPolarity = SPI_POLARITY_LOW;
-//  hspi2.Init.CLKPhase = SPI_PHASE_1EDGE;
-//  hspi2.Init.NSS = SPI_NSS_SOFT;
-//  hspi2.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_2;
-//  hspi2.Init.FirstBit = SPI_FIRSTBIT_MSB;
-//  hspi2.Init.TIMode = SPI_TIMODE_DISABLE;
-//  hspi2.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
-//  hspi2.Init.CRCPolynomial = 10;
-//  if (HAL_SPI_Init(&hspi2) != HAL_OK)
-//  {
-//    _Error_Handler(__FILE__, __LINE__);
-//  }
-}
 
 /* USART2 init function */
 static void MX_USART2_UART_Init(void)
@@ -331,21 +284,21 @@ void MX_FSMC_Init(void)
 //	Timing.DataLatency = 17;
 //	Timing.AccessMode = FSMC_ACCESS_MODE_A;
 	
-//	Timing.AddressSetupTime = 0x02;
-//	Timing.AddressHoldTime = 0x00;
-//	Timing.DataSetupTime = 0x05;
-//	Timing.BusTurnAroundDuration = 0x00;
-//	Timing.CLKDivision = 0x01;
-//	Timing.DataLatency = 0x00;
-//	Timing.AccessMode = FSMC_ACCESS_MODE_B;
+	Timing.AddressSetupTime = 0x02;
+	Timing.AddressHoldTime = 0x00;
+	Timing.DataSetupTime = 0x05;
+	Timing.BusTurnAroundDuration = 0x00;
+	Timing.CLKDivision = 0x01;
+	Timing.DataLatency = 0x00;
+	Timing.AccessMode = FSMC_ACCESS_MODE_B;
 
-	Timing.AddressSetupTime = 15;
-	Timing.AddressHoldTime = 15;
-	Timing.DataSetupTime = 255;
-	Timing.BusTurnAroundDuration = 15;
-	Timing.CLKDivision = 16;
-	Timing.DataLatency = 17;
-	Timing.AccessMode = FSMC_ACCESS_MODE_A;
+//	Timing.AddressSetupTime = 15;
+//	Timing.AddressHoldTime = 15;
+//	Timing.DataSetupTime = 255;
+//	Timing.BusTurnAroundDuration = 15;
+//	Timing.CLKDivision = 16;
+//	Timing.DataLatency = 17;
+//	Timing.AccessMode = FSMC_ACCESS_MODE_A;
 	/* ExtTiming */
 
 	if (HAL_SRAM_Init(&hsram4, &Timing, NULL) != HAL_OK)
@@ -403,5 +356,13 @@ void assert_failed(uint8_t *file, uint32_t line)
 /**
   * @}
   */
+
+int fputc(int ch, FILE* stream)
+{
+    //USART_SendData(USART1, (unsigned char) ch);
+    //while (!(USART1->SR & USART_FLAG_TXE));
+    HAL_UART_Transmit_IT(&huart3, (unsigned char *)ch, 1);
+    return ch;
+}
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

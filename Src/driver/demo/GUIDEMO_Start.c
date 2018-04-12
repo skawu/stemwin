@@ -69,6 +69,7 @@ void MainTask(void)
 {
 	WM_SetCreateFlags(WM_CF_MEMDEV);
 	GUI_Init();
+	printf("init ok\r\n");
 	GUIDEMO_Main();
 }
 
