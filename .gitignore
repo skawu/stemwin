@@ -1,0 +1,10 @@
+#skwau ignore file list
+
+MDK-ARM/STemWin_103/
+MDK-ARM/RTE
+MDK-ARM/DebugConfig
+MDK-ARM/*.txt
+MDK-ARM/*.ini
+MDK-ARM/*.skawu
+
+                 
